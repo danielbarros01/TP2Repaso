@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mimenu.R;
@@ -71,10 +72,7 @@ public class ActividadAdapter extends RecyclerView.Adapter<ActividadAdapter.View
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("actividad", actividades.get(position));
-                DetallesFragment detallesFragment = new DetallesFragment();
-                detallesFragment.setArguments(bundle);
-                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, detallesFragment).commit();
+                Navigation.findNavController(view).navigate(R.id.detallesFragment, bundle);
             }
         });
 
